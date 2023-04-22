@@ -1,0 +1,22 @@
+:root{
+    --Dark-Gray : #1E2328;
+    --Dark-Blue : #091428;
+    --Gold : #C89B3C;
+    --Blue : #003D56;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url('./fonts/Outfit.ttf');
+}
+
+.App{
+    background-color: var(--Dark-Gray);
+    height: 100vh;
+}
