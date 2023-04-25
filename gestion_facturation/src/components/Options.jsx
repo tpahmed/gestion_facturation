@@ -9,11 +9,13 @@ import './Options.css'
 export default function Options() {
     const [Societe,SetSociete] = useState([]);
     const [Client,SetClient] = useState([]);
-    const [Commands,SetCommands] = useState([{id:1,reference:"dfs",'titre':"hiiiiiiiiiiiiiiiiiiiiiiiiii","prix":10,"quantite":1}]);
-    const {Page,SetPage} = useContext(Add_Context);
-    const [SelectedCommand,SetSelectedCommand] = useState(0);
+    const {Page,SetPage,Commands,SetCommands,SelectedCommand,SetSelectedCommand} = useContext(Add_Context);
     const [Type,SetType] = useState(true);
     const changeType = ()=>SetType(!Type);
+    const supprimerCommand = ()=>{
+        SetCommands(Commands.filter((e)=>e.reference !== SelectedCommand));
+        SetSelectedCommand('');
+    }
 
     useEffect(()=>{
         axios.get('//localhost:4444/api/societes').then((res)=>SetSociete(res.data.data))
@@ -74,7 +76,7 @@ export default function Options() {
                     Commands :
                 </span>
                 <div className="Options-Commands-Operations">
-                    <div className='Options-Operation'>
+                    <div className='Options-Operation' onClick={supprimerCommand}>
                         <img src={Supprimer} alt='Ajouter Client' width={'20em'}/>
                     </div>
                     <div className='Options-Operation'  onClick={()=>SetPage('Command')}>
@@ -95,7 +97,7 @@ export default function Options() {
                     <tbody>
                     {
                         Commands.map((e)=>
-                        <tr onClick={()=>SetSelectedCommand(e.id)} className={SelectedCommand === e.id ? 'Options-Commands-Selected' : null}>
+                        <tr onClick={()=>SetSelectedCommand(e.reference)} className={SelectedCommand === e.reference ? 'Options-Commands-Selected' : null}>
                             <td>{e.reference}</td>
                             <td id='Options-Commands-table-titre'>{e.titre}</td>
                             <td>{e.prix}</td>

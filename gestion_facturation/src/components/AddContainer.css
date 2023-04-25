@@ -114,12 +114,12 @@
 
 
 @media screen and (max-width:1200px){
-    .AddContainer-Societe{
+    .AddContainer-Societe, .AddContainer-Client, .AddContainer-Command{
         width: 70%;
     }
 }
 @media screen and (max-width:860px){
-    .AddContainer-Societe{
+    .AddContainer-Societe, .AddContainer-Client, .AddContainer-Command{
         width: 90%;
     }
 }
@@ -128,7 +128,7 @@
     .AddContainer-inputs-table  td{
         display:block;
     }
-    .AddContainer-Societe{
+    .AddContainer-Societe, .AddContainer-Client, .AddContainer-Command{
         height: 90%;
     }
 }

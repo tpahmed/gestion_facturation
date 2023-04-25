@@ -16,7 +16,7 @@ export default function AddContainer() {
   const [Societe,SetSociete] = useState(ValeurParDefault.Societe)
   const [Client,SetClient] = useState(ValeurParDefault.Client)
   const [Command,SetCommand] = useState(ValeurParDefault.Command)
-  const {Page,SetPage} = useContext(Add_Context);
+  const {Page,SetPage,Commands,SetCommands} = useContext(Add_Context);
   const Pages = ["Societe","Client","Command"]
   const Enregistre = ()=>{
     switch(Page){
@@ -40,6 +40,18 @@ export default function AddContainer() {
           alert(e.data.message);
         });
         return;
+      case "Command":
+        let ref_duplication = Commands.filter((e)=>e.reference === Command.reference);
+        if (ref_duplication[0] || !Command.reference){
+          console.log(ref_duplication);
+          alert('reference exist deja ou reference est vide');
+          return;
+        }
+        SetCommands([...Commands,Command]);
+        SetCommand(ValeurParDefault.Command);
+        SetPage('');
+        return;
+          
 
     }
   }

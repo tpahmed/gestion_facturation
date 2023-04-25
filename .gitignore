@@ -1,0 +1,29 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+gestion_facturation/node_modules
+gestion_facturation/dist
+gestion_facturation/dist-ssr
+gestion_facturation/*.local
+
+server/node_modules
+server/dist
+server/dist-ssr
+server/*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
