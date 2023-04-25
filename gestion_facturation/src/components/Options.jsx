@@ -22,6 +22,7 @@ export default function Options() {
 
   return (
     <div className="Options">
+    
         <div className="Options-DropDown">
             <select className='Options-Select'>
                 <option key={'x'} defaultChecked sable="true" value="">
@@ -31,8 +32,8 @@ export default function Options() {
                     Societe.map((e)=><option key={e.id} value={e.id}>{e.raison_s}</option>)
                 }
             </select>
-            <div className='Options-Operation'>
-                <img src={Ajouter_Active} alt='Ajouter Societe' width={'20em'} onClick={()=>SetPage('Societe')}/>
+            <div className='Options-Operation' onClick={()=>SetPage('Client')}>
+                <img src={Ajouter_Active} alt='Ajouter Societe' width={'20em'}/>
             </div>
         </div>
         <div className="Options-DropDown">
@@ -44,7 +45,7 @@ export default function Options() {
                     Client.map((e)=><option key={e.id} value={e.id}>{e.raison_s}</option>)
                 }
             </select>
-            <div className='Options-Operation'>
+            <div className='Options-Operation' onClick={()=>SetPage('Client')}>
                 <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'}/>
             </div>
         </div>
@@ -76,7 +77,7 @@ export default function Options() {
                     <div className='Options-Operation'>
                         <img src={Supprimer} alt='Ajouter Client' width={'20em'}/>
                     </div>
-                    <div className='Options-Operation'>
+                    <div className='Options-Operation'  onClick={()=>SetPage('Command')}>
                         <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'}/>
                     </div>
                 </div>

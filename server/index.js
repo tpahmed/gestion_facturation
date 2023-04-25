@@ -150,11 +150,12 @@ router.post('/societes',(req,res)=>{
 // ajouter un client
 
 router.post('/clients',(req,res)=>{
-    db.query("insert into client values (NULL,?,?,?,?);",[
+    db.query("insert into client values (NULL,?,?,?,?,?);",[
         req.body.raison_s,
         req.body.ICE,
         req.body.adresse,
-        req.body.tel
+        req.body.tel,
+        req.body.LE
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
