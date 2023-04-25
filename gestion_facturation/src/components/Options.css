@@ -1,0 +1,213 @@
+.Options{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.Options-DropDown{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.Options-Select{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    border: 2px solid var(--Gold);
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 70%;
+    max-width: 70%;
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.Options-Operation{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    padding: .5em;
+    padding-bottom: .4em;
+    padding-top: .4em;
+    cursor: pointer;
+    border: 2px solid var(--Gold);
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.Options-Separator{
+    background-color: var(--Gold);
+    border: 0;
+    margin: 1em;
+    height: 2px;
+}
+
+.Options-Type{
+    display: flex;
+    justify-content: space-between;
+    margin: .5em;
+}
+
+.Options-Type-Option{
+    position: relative;
+    background-color: var(--Dark-Blue);
+    color: var(--Blue);
+    transition: .7s color ease;
+    border: 2px solid var(--Gold);
+    border-radius: .3em;
+    padding: .5em;
+    cursor: pointer;
+    padding-left: 1em;
+    padding-right: 1em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+    -webkit-transition: .7s color ease;
+    -moz-transition: .7s color ease;
+    -ms-transition: .7s color ease;
+    -o-transition: .7s color ease;
+}
+
+.Options-Type-Switch{
+    background-color: var(--Dark-Blue);
+    border: 2px solid var(--Gold);
+
+    transition: .7s ease;
+    border-radius: 1em;
+    height: 2.5em;
+    cursor: pointer;
+    width: 6.5em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+}
+
+.Options-Type-Switch-Cyrcle{
+    position: absolute;
+    height: 2em;
+    transition: .7s ease;
+    width: 2em;
+    margin-top: .1em;
+    margin-left: 0.15em;
+    background-color: var(--Gold);
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    -webkit-transition: .7s ease;
+    -moz-transition: .7s ease;
+    -ms-transition: .7s ease;
+    -o-transition: .7s ease;
+    
+}
+
+img[alt="switch"]{
+    position: absolute;
+    left: 57%;
+    top: 50%;
+    transition: .7s ease;
+    transform: translateX(-50%) translateY(-50%)  rotate(0);
+    -webkit-transform: translateX(-50%) translateY(-50%)  rotate(0);
+    -moz-transform: translateX(-50%) translateY(-50%)  rotate(0);
+    -ms-transform: translateX(-50%) translateY(-50%)  rotate(0);
+    -o-transform: translateX(-50%) translateY(-50%)  rotate(0);
+    -webkit-transition: .7s ease;
+    -moz-transition: .7s ease;
+    -ms-transition: .7s ease;
+    -o-transition: .7s ease;
+}
+
+.Options-Commands{
+    margin: .5em;
+}
+
+.Options-Commands-Title{
+    color: var(--Gold);
+    font-size: 1.5em;
+}
+
+.Options-Commands-Header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Options-Commands-Operations{
+    display: flex;
+    justify-content: space-between;
+    width: 6em;
+}
+
+.Options-Commands-List{
+    background-color: var(--Dark-Blue);
+    margin-top: 1em;
+    width: 100%;
+    border: 2px solid var(--Gold);
+    height: 14em;
+    overflow-y: scroll;
+}
+
+.Options-Commands-List::-webkit-scrollbar{
+    background-color: var(--Dark-Blue);
+}
+.Options-Commands-List::-webkit-scrollbar-thumb{
+    border: 2px solid var(--Dark-Blue);
+}
+.Options-Commands-List::-webkit-scrollbar-corner{
+    background-color: var(--Dark-Blue);
+}
+
+.Options-Commands-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Options-Commands-table tr{
+    margin-bottom: .5em;
+}
+
+
+.Options-Commands-table tr > th{
+    color: var(--Gold);
+    border-bottom: 3px solid var(--Gold);
+    position: sticky;
+    background-color: var(--Dark-Blue);
+    top: 2px;
+}
+
+.Options-Commands-table tr > th:not(:first-child){
+    border-left: 2px solid var(--Gold);
+    
+}
+
+.Options-Commands-table tr > th{
+    border-right: 2px solid var(--Gold);
+}
+
+.Options-Commands-table tr > td{
+    color: var(--Blue);
+    font-weight: bolder;
+    padding-left: .3em;
+}
+.Options-Commands-table tr:hover > td{
+    color: var(--Gold);
+    background-color: var(--Blue);
+}
+
+.Options-Commands-Selected > td{
+    color: var(--Gold) !important;
+    background-color: var(--Blue);
+}
+
+#Options-Commands-table-titre{
+    width: 50%;
+}

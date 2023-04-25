@@ -1,0 +1,27 @@
+.Holder{
+    position: relative;
+    width: 35%;
+    height: 100%;
+    border: 2px solid var(--Gold);
+    border-radius: 1.5em;
+    background-color: var(--Blue);
+    padding: .5em;
+    -webkit-border-radius: 1.5em;
+    -moz-border-radius: 1.5em;
+    -ms-border-radius: 1.5em;
+    -o-border-radius: 1.5em;
+}
+
+@media screen and (max-width:1200px){
+    .Holder{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:850px){
+    .Holder{
+        width: 100%;
+        margin-top: 10%;
+    }
+}
+

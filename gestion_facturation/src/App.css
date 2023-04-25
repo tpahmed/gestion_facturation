@@ -5,18 +5,47 @@
     --Blue : #003D56;
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 @font-face {
     font-family: 'Outfit';
     src: url('./fonts/Outfit.ttf');
 }
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Outfit';
+}
+
+
 .App{
     background-color: var(--Dark-Gray);
     height: 100vh;
+}
+
+@media screen and (max-width:850px){
+    .App{
+        /* background-color: var(--Dark-Gray); */
+        height: 180vh;
+    }
+}
+
+::-webkit-scrollbar{
+    background-color: var(--Dark-Gray);
+    width: .7em;
+    height: .7em;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--Gold);
+    border: 2px solid var(--Dark-Gray);
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+::-webkit-scrollbar-corner{
+    background-color: var(--Dark-Gray);
 }

@@ -22,7 +22,6 @@
 .NavBar-Options{
     background-color: var(--Dark-Blue);
     text-align: center;
-    font-family: 'Outfit';
     border: 2px solid var(--Gold);
     margin: auto;
     color: var(--Blue);
@@ -30,9 +29,42 @@
     padding-left: 1em;
     padding-right: 1em;
     vertical-align: middle;
+    transition: .7s color ease;
     border-radius: .5em;
+    cursor: pointer;
     -webkit-border-radius: .5em;
     -moz-border-radius: .5em;
     -ms-border-radius: .5em;
     -o-border-radius: .5em;
+    -webkit-transition: .7s color ease;
+    -moz-transition: .7s color ease;
+    -ms-transition: .7s color ease;
+    -o-transition: .7s color ease;
+}
+
+#NavBar-AddImg{
+    max-width: 100%;
+    transition: .7s all ease;
+    width: 35%;
+    -webkit-transition: .7s all ease;
+    -moz-transition: .7s all ease;
+    -ms-transition: .7s all ease;
+    -o-transition: .7s all ease;
+}
+
+#NavBar-Add{
+    padding: 0;
+    padding-bottom: 0.45em;
+    padding-top: 0.6em;
+}
+
+@media screen and (max-width:850px){
+    .NavBar{
+        width: 60%;
+    }
+}
+@media screen and (max-width:400px){
+    .NavBar{
+        width: 100%;
+    }
 }

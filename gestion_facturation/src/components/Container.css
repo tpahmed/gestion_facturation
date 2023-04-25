@@ -1,0 +1,28 @@
+.Container{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    /*top: 55%;*/
+    left: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15vh;
+    /*align-content:center;*/
+    /*flex-direction: column;*/
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+@media screen and (max-width:1050px){
+    .Container{
+        width: 100%;
+    }
+}
+@media screen and (max-width:850px){
+    .Container{
+        flex-direction: column;
+        height: 160%;
+    }
+}

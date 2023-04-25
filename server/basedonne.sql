@@ -11,16 +11,18 @@ CREATE TABLE societe(
     raison_s varchar(100),
     contact text,
     tel varchar(14),
-    RC varchar(30),
-    PV varchar(30)
+    patente varchar(30),
+    ICE varchar(30),
+    RC varchar(30)
 );
 
 CREATE TABLE client(
     id int auto_increment primary key,
     raison_s varchar(100),
-    ICE varchar(30),
     adresse text,
-    tel varchar(14)
+    ICE varchar(30),
+    tel varchar(14),
+    LE varchar(8)
 );
 
 CREATE TABLE devis(
@@ -32,7 +34,8 @@ CREATE TABLE devis(
 CREATE TABLE facture(
     N_facture int auto_increment primary key,
     id_client int references client(id),
-    date_facture date
+    date_facture date,
+    date_echeance date
 );
 
 CREATE TABLE commande_devis(

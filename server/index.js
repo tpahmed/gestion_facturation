@@ -23,11 +23,20 @@ const db = mysql.createConnection({
 
 const app = express()
 const router = express.Router();
+const PORT = 4444;
 
 // utilisation des middlewares
 
+const allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+};
+
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended:1}));
+app.use(allowCrossDomain);
 app.use(compression());
 app.use('/api',router);
 
@@ -121,15 +130,17 @@ router.get('/devisfacture',(req,res)=>{
 // ajouter une societe
 
 router.post('/societes',(req,res)=>{
-    db.query("insert into societe values (NULL,?,?,?,?,?);",[
-        req.query.raison_s,
-        req.query.contact,
-        req.query.tel,
-        req.query.RC,
-        req.query.PV
+    db.query("insert into societe values (NULL,?,?,?,?,?,?);",[
+        req.body.raison_s,
+        req.body.contact,
+        req.body.tel,
+        req.body.patente,
+        req.body.ICE,
+        req.body.RC
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
+            console.log(err);
             return;
         }
         res.json({"status":"reussis","message":result});
@@ -140,10 +151,10 @@ router.post('/societes',(req,res)=>{
 
 router.post('/clients',(req,res)=>{
     db.query("insert into client values (NULL,?,?,?,?);",[
-        req.query.raison_s,
-        req.query.ICE,
-        req.query.adresse,
-        req.query.tel
+        req.body.raison_s,
+        req.body.ICE,
+        req.body.adresse,
+        req.body.tel
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
@@ -157,8 +168,8 @@ router.post('/clients',(req,res)=>{
 
 router.post('/devis',(req,res)=>{
     db.query("insert into devis values (NULL,?,?);",[
-        req.query.id_client,
-        req.query.date_devis
+        req.body.id_client,
+        req.body.date_devis
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
@@ -172,11 +183,11 @@ router.post('/devis',(req,res)=>{
 
 router.put('/devis',(req,res)=>{
     db.query("insert into commande_devis values (NULL,?,?,?,?,?);",[
-        req.query.id_devis,
-        req.query.reference,
-        req.query.titre,
-        req.query.prix,
-        req.query.quantite
+        req.body.id_devis,
+        req.body.reference,
+        req.body.titre,
+        req.body.prix,
+        req.body.quantite
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
@@ -190,8 +201,8 @@ router.put('/devis',(req,res)=>{
 
 router.post('/factures',(req,res)=>{
     db.query("insert into facture values (NULL,?,?);",[
-        req.query.id_client,
-        req.query.date_devis
+        req.body.id_client,
+        req.body.date_devis
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
@@ -205,11 +216,11 @@ router.post('/factures',(req,res)=>{
 
 router.put('/factures',(req,res)=>{
     db.query("insert into commande_facture values (NULL,?,?,?,?,?);",[
-        req.query.id_facture,
-        req.query.reference,
-        req.query.titre,
-        req.query.prix,
-        req.query.quantite
+        req.body.id_facture,
+        req.body.reference,
+        req.body.titre,
+        req.body.prix,
+        req.body.quantite
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
@@ -249,4 +260,4 @@ app.get('*',(req,res)=>{
 
 // exposer au port 4444
 
-app.listen(4444);
+app.listen(PORT);
