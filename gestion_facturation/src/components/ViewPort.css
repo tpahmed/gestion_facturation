@@ -1,0 +1,85 @@
+.ViewPort{
+    position: relative;
+    background-color: white;
+    padding: 1em;
+    font-size: .7em;
+    width: 95%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    border-radius: 1.5em;
+    line-height: 1.5em;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    -webkit-border-radius: 1.5em;
+    -moz-border-radius: 1.5em;
+    -ms-border-radius: 1.5em;
+    -o-border-radius: 1.5em;
+}
+
+.Facture-InfoClient-Num{
+    text-align: center;
+}
+
+.Facture-Header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Facture-RasonSocial{
+    max-width: 10em;
+    word-wrap: break-word;
+}
+
+.Facture-InfoClient{
+    border: 1px solid black;
+    padding: .7em;
+    width: 15em;
+}
+
+.Facture-InfoClient-ICE-LE{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Facture-InfoFacture, .Facture-InfoCommand{
+    margin-top: 1em;
+}
+
+.Facture-InfoSociete-Table table, .Facture-InfoCommand table{
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#Facture-InfoCommand-Titre{
+    width: 50%;
+}
+
+.Facture-InfoSociete-Table td, th{
+    border: 1px solid black;
+}
+
+.Facture-InfoSociete{
+    position: absolute;
+    bottom: 2%;
+    top: 90%;
+    left: 2%;
+    right: 2%;
+    text-align: center;
+    border-top: 1px solid black;
+}
+
+.Facture-InfoSociete-Contact{
+    font-size: .8em;
+    word-wrap: break-word;
+}
+
+.Facture-InfoSociete-Juri{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: .9em;
+}
