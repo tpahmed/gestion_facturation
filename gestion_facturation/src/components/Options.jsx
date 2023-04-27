@@ -6,11 +6,10 @@ import axios from 'axios';
 import Polygon from '../assets/Polygon.svg';
 import './Options.css'
 
-export default function Options() {
+export default function Options({Enregistre,EnregistreTelechager}) {
     const [Societe,SetSociete] = useState([]);
     const [Client,SetClient] = useState([]);
-    const {Page,SetPage,Commands,SetCommands,SelectedCommand,SetSelectedCommand} = useContext(Add_Context);
-    const [Type,SetType] = useState(true);
+    const {Page,SetPage,Commands,SetCommands,Type,SetType,SelectedCommand,SetSelectedCommand,SocieteSelected,SetSocieteSelected,ClientSelected,SetClientSelected} = useContext(Add_Context);
     const changeType = ()=>SetType(!Type);
     const supprimerCommand = ()=>{
         SetCommands(Commands.filter((e)=>e.reference !== SelectedCommand));
@@ -26,21 +25,21 @@ export default function Options() {
     <div className="Options">
     
         <div className="Options-DropDown">
-            <select className='Options-Select'>
-                <option key={'x'} defaultChecked sable="true" value="">
+            <select className='Options-Select' value={SocieteSelected} onChange={(e)=>SetSocieteSelected(e.target.value)}>
+                <option key={'x'} defaultChecked disabled value="">
                     Societe
                 </option>
                 {
                     Societe.map((e)=><option key={e.id} value={e.id}>{e.raison_s}</option>)
                 }
             </select>
-            <div className='Options-Operation' onClick={()=>SetPage('Client')}>
-                <img src={Ajouter_Active} alt='Ajouter Societe' width={'20em'}/>
+            <div className='Options-Operation' onClick={()=>SetPage('Societe')}>
+                <img src={Ajouter_Active} alt='Ajouter Societe' width={'20em'} style={{ filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)" }}/>
             </div>
         </div>
         <div className="Options-DropDown">
-            <select className='Options-Select'>
-                <option defaultChecked disable value="">
+            <select className='Options-Select' value={ClientSelected} onChange={(e)=>SetClientSelected(e.target.value)}>
+                <option defaultChecked disabled value="">
                     Client
                 </option>
                 {
@@ -48,7 +47,7 @@ export default function Options() {
                 }
             </select>
             <div className='Options-Operation' onClick={()=>SetPage('Client')}>
-                <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'}/>
+                <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'} style={{ filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)" }}/>
             </div>
         </div>
 
@@ -60,7 +59,7 @@ export default function Options() {
             </div>
             <div className='Options-Type-Switch' onClick={changeType} style={ Type ? null : { "backgroundColor":"var(--Gold)", "borderColor" : "var(--Dark-Blue)"}}>
                 <div className='Options-Type-Switch-Cyrcle' style={ Type ? null : { "marginLeft" : "4.15em" , "backgroundColor":"var(--Dark-Blue)"}}>
-                    <img src={Polygon} alt='switch' width={'20em'} style={ !Type ? { left: "47%" , transform : "translateX(-50%) translateY(-50%)  rotate(180deg)", filter:"invert(58%) sepia(89%) saturate(325%) hue-rotate(2deg) brightness(92%) contrast(88%)"} : null}/>
+                    <img src={Polygon} alt='switch' width={'20em'} style={ !Type ? { left: "47%" , transform : "translateX(-50%) translateY(-50%)  rotate(180deg)", filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)"} : null}/>
                 </div>
             </div>
             <div className="Options-Type-Option" style={{ color : !Type ? "var(--Gold)" : null}} onClick={()=>SetType(false)} >
@@ -77,10 +76,10 @@ export default function Options() {
                 </span>
                 <div className="Options-Commands-Operations">
                     <div className='Options-Operation' onClick={supprimerCommand}>
-                        <img src={Supprimer} alt='Ajouter Client' width={'20em'}/>
+                        <img src={Supprimer} alt='Ajouter Client' width={'20em'} style={{ filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)" }}/>
                     </div>
                     <div className='Options-Operation'  onClick={()=>SetPage('Command')}>
-                        <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'}/>
+                        <img src={Ajouter_Active} alt='Ajouter Client' width={'20em'} style={{ filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)" }}/>
                     </div>
                 </div>
             </div>
@@ -97,7 +96,7 @@ export default function Options() {
                     <tbody>
                     {
                         Commands.map((e)=>
-                        <tr onClick={()=>SetSelectedCommand(e.reference)} className={SelectedCommand === e.reference ? 'Options-Commands-Selected' : null}>
+                        <tr key={e.reference} onClick={()=>SetSelectedCommand(e.reference)} className={SelectedCommand === e.reference ? 'Options-Commands-Selected' : null}>
                             <td>{e.reference}</td>
                             <td id='Options-Commands-table-titre'>{e.titre}</td>
                             <td>{e.prix}</td>
@@ -108,6 +107,10 @@ export default function Options() {
 
                     </tbody>
                 </table>
+            </div>
+            <div className="Options-Enregistre">
+                <input type="button" value={"Enregistre"} onClick={Enregistre}/>
+                <input type="button" value={"Enregistre et Telecharger PDF"} onClick={EnregistreTelechager}/>
             </div>
         </div>
     </div>

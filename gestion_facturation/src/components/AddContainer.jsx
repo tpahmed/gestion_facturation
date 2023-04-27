@@ -137,8 +137,8 @@ export default function AddContainer() {
                   </tr>
                   <tr>
                     <td colSpan={2}>
-                      <div className='AddContainer-inputs-Label'>PE : </div>
-                      <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Client.PE} onChange={(e)=>SetClient({...Client,"PE":e.target.value.toUpperCase()})}/>
+                      <div className='AddContainer-inputs-Label'>LE : </div>
+                      <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Client.LE} onChange={(e)=>SetClient({...Client,"LE":e.target.value.toUpperCase()})}/>
                     </td>
                   </tr>
                   
@@ -173,7 +173,7 @@ export default function AddContainer() {
                     </td>
                     <td>
                       <div className='AddContainer-inputs-Label'>Quantite : </div>
-                      <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Command.quantite} onChange={(e)=>SetCommand({...Command,"quantite":e.target.value.toUpperCase()})}/>
+                      <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Command.quantite} onChange={(e)=>isNaN(e.target.value) ? '' : SetCommand({...Command,"quantite":e.target.value})}/>
                     </td>
                   </tr>                  
                 </tbody>

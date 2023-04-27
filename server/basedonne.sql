@@ -28,12 +28,14 @@ CREATE TABLE client(
 CREATE TABLE devis(
     N_devis int auto_increment primary key,
     id_client int references client(id),
+    id_societe int references societe(id),
     date_devis date
 );
 
 CREATE TABLE facture(
     N_facture int auto_increment primary key,
     id_client int references client(id),
+    id_societe int references societe(id),
     date_facture date,
     date_echeance date
 );

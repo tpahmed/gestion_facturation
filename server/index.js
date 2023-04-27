@@ -54,6 +54,8 @@ router.get('/societes',(req,res)=>{
     })
 });
 
+
+
 // afficher les clients enregistre
 
 router.get('/clients',(req,res)=>{
@@ -65,6 +67,33 @@ router.get('/clients',(req,res)=>{
         res.json({"status":"reussis","data":result});
     })
 });
+
+// afficher les clients enregistre par id
+
+router.get('/clients/:id',(req,res)=>{
+    db.query("SELECT * FROM client where id = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":[]}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// afficher les societes enregistre par id
+
+router.get('/societes/:id',(req,res)=>{
+    db.query("SELECT * FROM societe where id = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":[]}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+
+
 
 // afficher les devis enregistre
 
@@ -78,9 +107,33 @@ router.get('/devis',(req,res)=>{
     })
 });
 
-// afficher les command d'une factures par id
+// afficher un devis par id
 
 router.get('/devis/:id',(req,res)=>{
+    db.query("SELECT * FROM devis where N_devis = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":err}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// afficher une devis par id societe
+
+router.get('/devis/s/:id',(req,res)=>{
+    db.query("SELECT * FROM devis where id_societe = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":err}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// afficher les command d'une devis par id
+
+router.get('/devis/c/:id',(req,res)=>{
     db.query("SELECT * FROM commande_devis where id_devis = ?;",[req.params.id],(err,result)=>{
         if (err){
             res.json({"status":"erreur","data":[]}).status(500);
@@ -89,6 +142,7 @@ router.get('/devis/:id',(req,res)=>{
         res.json({"status":"reussis","data":result});
     })
 });
+
 
 // afficher les factures enregistre
 
@@ -102,9 +156,33 @@ router.get('/factures',(req,res)=>{
     })
 });
 
-// afficher les command d'une factures par id
+// afficher un factures par id
 
 router.get('/factures/:id',(req,res)=>{
+    db.query("SELECT * FROM factures where N_factures = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":err}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// afficher une factures par id societe
+
+router.get('/factures/s/:id',(req,res)=>{
+    db.query("SELECT * FROM factures where id_societe = ?;",[req.params.id],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":err}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// afficher les command d'une factures par id
+
+router.get('/factures/c/:id',(req,res)=>{
     db.query("SELECT * FROM commande_facture where id_facture = ?;",[req.params.id],(err,result)=>{
         if (err){
             res.json({"status":"erreur","data":[]}).status(500);
@@ -113,6 +191,7 @@ router.get('/factures/:id',(req,res)=>{
         res.json({"status":"reussis","data":result});
     })
 });
+
 
 // afficher les devis facture enregistre
 
@@ -140,9 +219,9 @@ router.post('/societes',(req,res)=>{
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
-            console.log(err);
             return;
         }
+        console.log(result);
         res.json({"status":"reussis","message":result});
     })
 });
@@ -168,15 +247,16 @@ router.post('/clients',(req,res)=>{
 // ajouter un devis
 
 router.post('/devis',(req,res)=>{
-    db.query("insert into devis values (NULL,?,?);",[
+    db.query("insert into devis values (NULL,?,?,?);",[
         req.body.id_client,
+        req.body.id_societe,
         req.body.date_devis
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
             return;
         }
-        res.json({"status":"reussis","message":result});
+        res.json({"status":"reussis","data":result});
     })
 });
 
@@ -194,22 +274,24 @@ router.put('/devis',(req,res)=>{
             res.json({"status":"erreur","message":err}).status(500);
             return;
         }
-        res.json({"status":"reussis","message":result});
+        res.json({"status":"reussis","data":result});
     })
 });
 
 // ajouter une facture
 
 router.post('/factures',(req,res)=>{
-    db.query("insert into facture values (NULL,?,?);",[
+    db.query("insert into facture values (NULL,?,?,?,?);",[
         req.body.id_client,
-        req.body.date_devis
+        req.body.id_societe,
+        req.body.date_facture,
+        req.body.date_echeance
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
             return;
         }
-        res.json({"status":"reussis","message":result});
+        res.json({"status":"reussis","data":result});
     })
 });
 
@@ -227,7 +309,7 @@ router.put('/factures',(req,res)=>{
             res.json({"status":"erreur","message":err}).status(500);
             return;
         }
-        res.json({"status":"reussis","message":result});
+        res.json({"status":"reussis","data":result});
     })
 });
 

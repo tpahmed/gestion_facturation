@@ -152,7 +152,7 @@ img[alt="switch"]{
     margin-top: 1em;
     width: 100%;
     border: 2px solid var(--Gold);
-    height: 14em;
+    height: 10em;
     overflow-y: scroll;
 }
 
@@ -165,6 +165,26 @@ img[alt="switch"]{
 .Options-Commands-List::-webkit-scrollbar-corner{
     background-color: var(--Dark-Blue);
 }
+
+.Options-Enregistre{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Options-Enregistre input{
+    color: var(--Gold);
+    background-color: var(--Dark-Blue);
+    border: 2px solid var(--Gold);
+    cursor: pointer;
+    padding: .7em;
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
 
 
 

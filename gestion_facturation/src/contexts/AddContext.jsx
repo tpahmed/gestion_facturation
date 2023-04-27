@@ -5,11 +5,15 @@ export const Add_Context = createContext()
 export default function AddContext({children}) {
 
     const [Page,SetPage] = useState('');
-    const [Commands,SetCommands] = useState([{reference:"dfs",'titre':"hiiiiiiiiiiiiiiiiiiiiiiiiii","prix":10,"quantite":1}]);
+    const [SocieteSelected,SetSocieteSelected] = useState('');
+    const [ClientSelected,SetClientSelected] = useState('');
+    const [Type,SetType] = useState(true);
+
+    const [Commands,SetCommands] = useState([]);
     const [SelectedCommand,SetSelectedCommand] = useState('');
     
     return (
-        <Add_Context.Provider value={{ Page,SetPage,Commands,SetCommands,SelectedCommand,SetSelectedCommand }}>
+        <Add_Context.Provider value={{ Page,SetPage,Commands,SetCommands,Type,SetType,SelectedCommand,SetSelectedCommand,SocieteSelected,SetSocieteSelected,ClientSelected,SetClientSelected }}>
             {children}
         </Add_Context.Provider>
     )

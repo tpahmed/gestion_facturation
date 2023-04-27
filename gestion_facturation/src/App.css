@@ -1,13 +1,17 @@
 :root{
     --Dark-Gray : #1E2328;
     --Dark-Blue : #091428;
-    --Gold : #C89B3C;
+    --Gold : #BBB;
     --Blue : #003D56;
 }
 
 @font-face {
     font-family: 'Outfit';
     src: url('./fonts/Outfit.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto.ttf');
 }
 
 *{

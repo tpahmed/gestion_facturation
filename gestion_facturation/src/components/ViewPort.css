@@ -20,6 +20,10 @@
     -o-border-radius: 1.5em;
 }
 
+.ViewPort * {
+    font-family: 'Roboto';
+}
+
 .Facture-InfoClient-Num{
     text-align: center;
 }
@@ -59,7 +63,7 @@
     width: 50%;
 }
 
-.Facture-InfoSociete-Table td, th{
+.Facture-InfoSociete-Table td,.Facture-InfoSociete-Table  th,.Facture-InfoCommand td,.Facture-InfoCommand  th{
     border: 1px solid black;
 }
 

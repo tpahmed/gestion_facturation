@@ -1,0 +1,108 @@
+.ListeDevis{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ListeDevis-DropDown{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.ListeDevis-Select{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    border: 2px solid var(--Gold);
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 70%;
+    max-width: 70%;
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.ListeDevis-Operation{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    padding: .5em;
+    padding-bottom: .4em;
+    padding-top: .4em;
+    cursor: pointer;
+    border: 2px solid var(--Gold);
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.ListeDevis-Commands-List{
+    background-color: var(--Dark-Blue);
+    margin-top: 1em;
+    width: 100%;
+    border: 2px solid var(--Gold);
+    height: 26em;
+    overflow-y: scroll;
+}
+
+.ListeDevis-Commands-List::-webkit-scrollbar{
+    background-color: var(--Dark-Blue);
+}
+.ListeDevis-Commands-List::-webkit-scrollbar-thumb{
+    border: 2px solid var(--Dark-Blue);
+}
+.ListeDevis-Commands-List::-webkit-scrollbar-corner{
+    background-color: var(--Dark-Blue);
+}
+
+
+
+
+.ListeDevis-Commands-table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.ListeDevis-Commands-table tr{
+    margin-bottom: .5em;
+}
+
+
+.ListeDevis-Commands-table tr > th{
+    color: var(--Gold);
+    border-bottom: 3px solid var(--Gold);
+    position: sticky;
+    background-color: var(--Dark-Blue);
+    top: 2px;
+}
+
+.ListeDevis-Commands-table tr > th:not(:first-child){
+    border-left: 2px solid var(--Gold);
+    
+}
+
+.ListeDevis-Commands-table tr > th{
+    border-right: 2px solid var(--Gold);
+}
+
+.ListeDevis-Commands-table tr > td{
+    color: var(--Blue);
+    font-weight: bolder;
+    padding-left: .3em;
+}
+.ListeDevis-Commands-table tr:hover > td{
+    color: var(--Gold);
+    background-color: var(--Blue);
+}
+
+.ListeDevis-Commands-Selected > td{
+    color: var(--Gold) !important;
+    background-color: var(--Blue);
+}
