@@ -22,10 +22,23 @@
     font-family: 'Outfit';
 }
 
+html{
+    background-color: var(--Dark-Gray);
+
+}
 
 .App{
-    background-color: var(--Dark-Gray);
     height: 100vh;
+}
+
+.Alert{
+    position: fixed;
+    top: 5%;
+    width: 50%;
+    height: 20%;
+    color: var(--Gold);
+    background-color: var(--Blue);
+    border: 2px solid var(--Gold);
 }
 
 @media screen and (max-width:850px){

@@ -4,7 +4,7 @@
     padding: 1em;
     font-size: .7em;
     width: 95%;
-    height: 95%;
+    aspect-ratio: 9 / 12.5;
     left: 50%;
     top: 50%;
     border-radius: 1.5em;

@@ -136,11 +136,9 @@ router.get('/devis/s/:id',(req,res)=>{
 router.get('/devis/c/:id',(req,res)=>{
     db.query("SELECT * FROM commande_devis where id_devis = ?;",[req.params.id],(err,result)=>{
         if (err){
-            console.log(err);
             res.json({"status":"erreur","data":[]}).status(500);
             return;
         }
-        console.log(result);
         res.json({"status":"reussis","data":result});
     })
 });
@@ -161,7 +159,7 @@ router.get('/factures',(req,res)=>{
 // afficher un factures par id
 
 router.get('/factures/:id',(req,res)=>{
-    db.query("SELECT * FROM factures where N_factures = ?;",[req.params.id],(err,result)=>{
+    db.query("SELECT * FROM facture where N_facture = ?;",[req.params.id],(err,result)=>{
         if (err){
             res.json({"status":"erreur","data":err}).status(500);
             return;
@@ -173,7 +171,7 @@ router.get('/factures/:id',(req,res)=>{
 // afficher une factures par id societe
 
 router.get('/factures/s/:id',(req,res)=>{
-    db.query("SELECT * FROM factures where id_societe = ?;",[req.params.id],(err,result)=>{
+    db.query("SELECT * FROM facture where id_societe = ?;",[req.params.id],(err,result)=>{
         if (err){
             res.json({"status":"erreur","data":err}).status(500);
             return;
@@ -223,7 +221,6 @@ router.post('/societes',(req,res)=>{
             res.json({"status":"erreur","message":err}).status(500);
             return;
         }
-        console.log(result);
         res.json({"status":"reussis","message":result});
     })
 });
@@ -309,6 +306,21 @@ router.put('/factures',(req,res)=>{
     ],(err,result)=>{
         if (err){
             res.json({"status":"erreur","message":err}).status(500);
+            return;
+        }
+        res.json({"status":"reussis","data":result});
+    })
+});
+
+// ajouter un devis facture
+
+router.post('/devisfacture',(req,res)=>{
+    db.query("insert into devis_facture values (?,?);",[
+        req.body.id_facture,
+        req.body.id_devis
+    ],(err,result)=>{
+        if (err){
+            res.json({"status":"erreur","data":[]}).status(500);
             return;
         }
         res.json({"status":"reussis","data":result});

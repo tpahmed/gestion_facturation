@@ -1,0 +1,108 @@
+.ListeFacture{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ListeFacture-DropDown{
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.ListeFacture-Select{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    border: 2px solid var(--Gold);
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 70%;
+    max-width: 70%;
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.ListeFacture-Operation{
+    background-color: var(--Dark-Blue);
+    color: var(--Gold);
+    padding: .5em;
+    padding-bottom: .4em;
+    padding-top: .4em;
+    cursor: pointer;
+    border: 2px solid var(--Gold);
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    -ms-border-radius: .3em;
+    -o-border-radius: .3em;
+}
+
+.ListeFacture-Commands-List{
+    background-color: var(--Dark-Blue);
+    margin-top: 1em;
+    width: 100%;
+    border: 2px solid var(--Gold);
+    height: 26em;
+    overflow-y: scroll;
+}
+
+.ListeFacture-Commands-List::-webkit-scrollbar{
+    background-color: var(--Dark-Blue);
+}
+.ListeFacture-Commands-List::-webkit-scrollbar-thumb{
+    border: 2px solid var(--Dark-Blue);
+}
+.ListeFacture-Commands-List::-webkit-scrollbar-corner{
+    background-color: var(--Dark-Blue);
+}
+
+
+
+
+.ListeFacture-Commands-table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.ListeFacture-Commands-table tr{
+    margin-bottom: .5em;
+}
+
+
+.ListeFacture-Commands-table tr > th{
+    color: var(--Gold);
+    border-bottom: 3px solid var(--Gold);
+    position: sticky;
+    background-color: var(--Dark-Blue);
+    top: 2px;
+}
+
+.ListeFacture-Commands-table tr > th:not(:first-child){
+    border-left: 2px solid var(--Gold);
+    
+}
+
+.ListeFacture-Commands-table tr > th{
+    border-right: 2px solid var(--Gold);
+}
+
+.ListeFacture-Commands-table tr > td{
+    color: var(--Blue);
+    font-weight: bolder;
+    padding-left: .3em;
+}
+.ListeFacture-Commands-table tr:hover > td{
+    color: var(--Gold);
+    background-color: var(--Blue);
+}
+
+.ListeFacture-Commands-Selected > td{
+    color: var(--Gold) !important;
+    background-color: var(--Blue);
+}

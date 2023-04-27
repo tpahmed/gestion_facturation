@@ -1,7 +1,8 @@
-import Holder from "./Holder";
+
 import './ViewPort.css'
 
 export default function ViewPort({element,commands,refe}) {
+    
   return (
         <div className="ViewPort" ref={refe}>
             { element.Type ? (
@@ -35,7 +36,7 @@ export default function ViewPort({element,commands,refe}) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{element.facture.date_devis}</td>
+                                    <td>{element.facture.date_devis.slice(0, 10)}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -110,8 +111,8 @@ export default function ViewPort({element,commands,refe}) {
             </thead>
             <tbody>
                 <tr>
-                    <td>{element.facture.date_facture}</td>
-                    <td>{element.facture.date_echeance}</td>
+                    <td>{element.facture.date_facture.slice(0, 10)}</td>
+                    <td>{element.facture.date_echeance.slice(0, 10)}</td>
                 </tr>
             </tbody>
         </table>

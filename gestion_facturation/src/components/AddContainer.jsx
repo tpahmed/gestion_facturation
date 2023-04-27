@@ -1,7 +1,8 @@
-import { useState,useContext } from 'react';
-import { Add_Context } from '../contexts/AddContext';
 import Ajouter_Active from '../assets/ajouter-active.svg';
-import './AddContainer.css'
+import { Add_Context } from '../contexts/AddContext';
+import { useState,useContext } from 'react';
+import Alert from '@material-ui/lab/Alert';
+import './AddContainer.css';
 import axios from 'axios';
 
 export default function AddContainer() {
@@ -16,7 +17,7 @@ export default function AddContainer() {
   const [Societe,SetSociete] = useState(ValeurParDefault.Societe)
   const [Client,SetClient] = useState(ValeurParDefault.Client)
   const [Command,SetCommand] = useState(ValeurParDefault.Command)
-  const {Page,SetPage,Commands,SetCommands} = useContext(Add_Context);
+  const {Page,SetPage,Commands,SetCommands,SetFlash} = useContext(Add_Context);
   const Pages = ["Societe","Client","Command"]
   const Enregistre = ()=>{
     switch(Page){
@@ -24,20 +25,20 @@ export default function AddContainer() {
         axios.post("//localhost:4444/api/societes",Societe).then((e)=>{
           if (e.data.status === "reussis"){
             SetSociete(ValeurParDefault.Societe);
+            SetFlash(<Alert style={alertStyle} severity="success" onClose={() => {SetFlash(<></>)}}>Societe ajouter avec successes</Alert>)
             SetPage('');
             return;
           }
-          alert(e.data.message);
         });
         return;
       case "Client":
         axios.post("//localhost:4444/api/clients",Client).then((e)=>{
           if (e.data.status === "reussis"){
             SetClient(ValeurParDefault.Client);
+            SetFlash(<Alert style={alertStyle} severity="success" onClose={() => {SetFlash(<></>)}}>Client ajouter avec successes</Alert>)
             SetPage('');
             return;
           }
-          alert(e.data.message);
         });
         return;
       case "Command":
@@ -48,6 +49,7 @@ export default function AddContainer() {
         }
         SetCommands([...Commands,Command]);
         SetCommand(ValeurParDefault.Command);
+        SetFlash(<Alert style={alertStyle} severity="success" onClose={() => {SetFlash(<></>)}}>Command ajouter avec successes</Alert>)
         SetPage('');
         return;
           

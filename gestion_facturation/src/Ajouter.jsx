@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import { Add_Context } from './contexts/AddContext';
+import Alert from '@material-ui/lab/Alert';
 import ViewPort from './components/ViewPort';
 import Options from "./components/Options";
 import Holder from "./components/Holder";
@@ -9,10 +10,11 @@ import axios from 'axios';
 
 
 export default function Ajouter() {
-  const {Commands,Type,SocieteSelected,ClientSelected} = useContext(Add_Context);
+  const {Commands,Type,SocieteSelected,ClientSelected,Flash,SetFlash} = useContext(Add_Context);
   const [Societe,SetSociete] = useState({id:'',raison_s:"",contact:'',patente:'',tel:'',ICE:"",RC:""});
   const [Client,SetClient] = useState({id:'',raison_s:"",adresse:'',ICE:"",LE:""});
   const [Total,SetTotal] = useState(0);
+  let alertStyle = {"position":"fixed","top":"-10%","width":"50%","height":"20%","color":"var(--Gold)","backgroundColor":"var(--Blue)","border":"2px solid var(--Gold)"};
   const ViewPortRef = useRef();
   let currentDate = new Date().toJSON().slice(0, 10);
   const [Donne,SetDonne] = useState({	N_devis:'■',N_facture:'■',date_facture:currentDate,date_echeance:currentDate,date_devis:currentDate});
@@ -28,19 +30,21 @@ export default function Ajouter() {
   },[SocieteSelected,ClientSelected,Commands]);
   const Enregistre = async ()=>{
     if(!ClientSelected || !SocieteSelected){
-      alert("Vous devez selectioner une Societe et un Client")
+      SetFlash(<Alert style={alertStyle} severity="error" onClose={() => {SetFlash(<></>)}}>Vous devez selectioner une Societe et un Client</Alert>)
       return
     }
     if (Type){
       await axios.post('//localhost:4444/api/devis',{"id_client":ClientSelected,"id_societe":SocieteSelected,"date_devis":currentDate}).then(async (e)=>{
-        SetDonne({...Donne,N_devis:e.data.insertId});
-        await Commands.forEach((e)=>axios.put('//localhost:4444/api/devis',{...e,id_devis:e.data.insertId}))
+        SetDonne({...Donne,N_devis:e.data.data.insertId});
+        await Commands.forEach((el)=>axios.put('//localhost:4444/api/devis',{...el,id_devis:e.data.data.insertId}))
+        SetFlash(<Alert style={alertStyle} severity="success" onClose={() => {SetFlash(<></>)}}>Devis cree avec successes</Alert>)
       });
     }
     else{
       await axios.post('//localhost:4444/api/factures',{"id_client":ClientSelected,"id_societe":SocieteSelected,"date_facture":currentDate,"date_echeance":currentDate}).then(async (e)=>{
-        SetDonne({...Donne,N_facture:e.data.insertId});
-        await Commands.forEach((e)=>axios.put('//localhost:4444/api/factures',{...e,id_facture:e.data.insertId}));
+        SetDonne({...Donne,N_facture:e.data.data.insertId});
+        await Commands.forEach((el)=>axios.put('//localhost:4444/api/factures',{...el,id_facture:e.data.data.insertId}));
+        SetFlash(<Alert style={alertStyle} severity="success" onClose={() => {SetFlash(<></>)}}>Facture cree avec successes</Alert>)
 
       });
     }
@@ -93,6 +97,8 @@ export default function Ajouter() {
         <Holder>
           <ViewPort refe={ViewPortRef} commands={Commands} element={{ societe:Societe, client:Client,facture:Donne, prixTotale:Total, Type }}/>
         </Holder>
+        
+        {Flash}
     </>
   )
 }
