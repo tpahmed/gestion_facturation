@@ -19,29 +19,33 @@ export default function Devis() {
   const ViewPortRef = useRef();
   let currentDate = new Date().toJSON().slice(0, 10);
   useEffect(()=>{
-    if (SocieteSelected){
-      axios.get('//localhost:4444/api/societes/'+SocieteSelected).then((e)=>SetSociete(e.data.data[0]));
+    async function Update(){
+      if (SocieteSelected){
+        await axios.get('//localhost:4444/api/societes/'+SocieteSelected).then((e)=>SetSociete(e.data.data[0]));
+      }
+      if (DevisSelected){
+        const Nv_Devis = await axios.get('//localhost:4444/api/devis/'+DevisSelected);
+        SetDevis(Nv_Devis.data.data[0]);
+          
+      }
     }
-    if (DevisSelected){
-        
-        axios.get('//localhost:4444/api/devis/'+DevisSelected).then((e)=>{
-            SetDevis(e.data.data[0]);
-            axios.get('//localhost:4444/api/clients/'+Devis.id_client).then((e)=>{
-                SetClient(e.data.data[0]);
-                
-              });
-              
-              axios.get('//localhost:4444/api/devis/c/'+Devis.N_devis).then((e)=>{
-                SetCommands(e.data.data);
-
-            });
-
-        
-        });
-    }
-    SetTotal(0);
-    Commands.forEach((e)=>SetTotal(Total+(e.prix*e.quantite)))
+    Update()
   },[SocieteSelected,DevisSelected]);
+  useEffect(()=>{
+    
+    async function Update(){
+    
+      if (Devis.id_client){
+        const Nv_Client = await axios.get('//localhost:4444/api/clients/'+Devis.id_client);
+        SetClient(Nv_Client.data.data[0]);
+        const Nv_Command = await axios.get('//localhost:4444/api/devis/c/'+Devis.N_devis);
+        SetCommands(Nv_Command.data.data);          
+      }
+      SetTotal(0);
+      Commands.forEach((e)=>SetTotal(Total+(e.prix*e.quantite)))
+    }
+    Update()
+  },[Devis]);
   
   const TelechargerPdf = async () => {
     const element = ViewPortRef.current;
@@ -58,15 +62,15 @@ export default function Devis() {
       (imgProperties.height * pdfWidth) / imgProperties.width;
 
     pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save(`${Type ? "Devis" : "Facture"}-${currentDate}.pdf`);
+    pdf.save(`Devis-${Devis.date_devis}.pdf`);
   };
   return (
     <>
         <Holder>
-          <ListeDevis/>
+          <ListeDevis TelechargerPdf={TelechargerPdf}/>
         </Holder>
         <Holder>
-          <ViewPort refe={ViewPortRef} element={{ societe:Societe, client:Client,facture:Devis, commands:Commands, prixTotale:Total, Type:true }}/>
+          <ViewPort refe={ViewPortRef} commands={Commands} element={{ societe:Societe, client:Client,facture:Devis, prixTotale:Total, Type:true }}/>
         </Holder>
     </>
   )

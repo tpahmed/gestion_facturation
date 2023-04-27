@@ -1,7 +1,7 @@
 import Holder from "./Holder";
 import './ViewPort.css'
 
-export default function ViewPort({element,refe}) {
+export default function ViewPort({element,commands,refe}) {
   return (
         <div className="ViewPort" ref={refe}>
             { element.Type ? (
@@ -52,7 +52,7 @@ export default function ViewPort({element,refe}) {
                             </tr>
                         </thead>
                         <tbody>
-                        {element.commands.map(command => 
+                        {commands.map(command => 
                             <tr key={command.reference}>
                                 <td>{command.reference}</td>
                                 <td>{command.titre}</td>
@@ -128,7 +128,7 @@ export default function ViewPort({element,refe}) {
             </tr>
         </thead>
         <tbody>
-        {element.commands.map(command => 
+        {commands.map(command => 
             <tr key={command.reference}>
                 <td>{command.reference}</td>
                 <td>{command.titre}</td>

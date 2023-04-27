@@ -136,9 +136,11 @@ router.get('/devis/s/:id',(req,res)=>{
 router.get('/devis/c/:id',(req,res)=>{
     db.query("SELECT * FROM commande_devis where id_devis = ?;",[req.params.id],(err,result)=>{
         if (err){
+            console.log(err);
             res.json({"status":"erreur","data":[]}).status(500);
             return;
         }
+        console.log(result);
         res.json({"status":"reussis","data":result});
     })
 });

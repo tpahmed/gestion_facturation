@@ -5,7 +5,7 @@ import axios from 'axios';
 import './ListeDevis.css';
 
 
-export default function ListeDevis() {
+export default function ListeDevis({TelechargerPdf}) {
     const {SocieteSelected,SetSocieteSelected,DevisSelected,SetDevisSelected} = useContext(Devis_Context);
     const [Societe,SetSociete] = useState([]);
     const [Devis,SetDevis] = useState([]);
@@ -26,7 +26,7 @@ export default function ListeDevis() {
                     Societe.map((e)=><option key={e.id} value={e.id}>{e.raison_s}</option>)
                 }
             </select>
-            <div className='ListeDevis-Operation'>
+            <div className='ListeDevis-Operation' onClick={TelechargerPdf}>
                 <img src={Ajouter_Active} alt='Ajouter Societe' width={'20em'} style={{ filter:"invert(65%) sepia(86%) saturate(0%) hue-rotate(225deg) brightness(97%) contrast(94%)" }}/>
             </div>
         </div>

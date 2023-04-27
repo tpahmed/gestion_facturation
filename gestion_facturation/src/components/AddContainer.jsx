@@ -43,7 +43,6 @@ export default function AddContainer() {
       case "Command":
         let ref_duplication = Commands.filter((e)=>e.reference === Command.reference);
         if (ref_duplication[0] || !Command.reference){
-          console.log(ref_duplication);
           alert('reference exist deja ou reference est vide');
           return;
         }
@@ -150,7 +149,7 @@ export default function AddContainer() {
           : Page ===  Pages[2] ?
           <div className='AddContainer-Command' style={Page === Pages[2] ? {"left":"50%"} : null}>
             <div className="AddContainer-Header">
-              <span className='AddContainer-Title'>Ajouter un Client :</span>
+              <span className='AddContainer-Title'>Ajouter une Command :</span>
               <img src={Ajouter_Active} alt='Quitter' onClick={()=>SetPage('')} style={{ width:"1.5em",rotate:"45deg",cursor:"pointer" }}/>
             </div>
             <div className="AddContainer-inputs">
@@ -162,7 +161,7 @@ export default function AddContainer() {
                       <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Command.reference} onChange={(e)=>SetCommand({...Command,"reference":e.target.value.toUpperCase()})}/>
                     </td>
                     <td>
-                      <div className='AddContainer-inputs-Label'>Adresse : </div>
+                      <div className='AddContainer-inputs-Label'>Description : </div>
                       <input className='AddContainer-inputs-input' type='text' spellCheck='false' value={Command.titre} onChange={(e)=>SetCommand({...Command,"titre":e.target.value.toUpperCase()})}/>
                     </td>
                   </tr>

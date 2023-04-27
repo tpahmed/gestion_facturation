@@ -91,7 +91,7 @@ export default function Ajouter() {
           <Options Enregistre={Enregistre} EnregistreTelechager={EnregistreTelechager}/>
         </Holder>
         <Holder>
-          <ViewPort refe={ViewPortRef} element={{ societe:Societe, client:Client,facture:Donne, commands:Commands, prixTotale:Total, Type }}/>
+          <ViewPort refe={ViewPortRef} commands={Commands} element={{ societe:Societe, client:Client,facture:Donne, prixTotale:Total, Type }}/>
         </Holder>
     </>
   )
